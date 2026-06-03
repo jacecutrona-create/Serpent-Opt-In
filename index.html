@@ -197,6 +197,18 @@
     letter-spacing: 0.02em;
   }
 
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    margin-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
   .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -432,9 +444,9 @@
 <main class="main">
 
   <div class="hero">
-    <div class="eyebrow">SMS Appointment Reminders</div>
-    <h1>Stay on top of<br>your <em>appointments.</em></h1>
-    <p class="hero-body">Sign up to receive automated SMS appointment reminders from Peak Chiropractic & Wellness. We'll confirm your booking, remind you before your visit, and make it easy to reschedule if needed — all by text.</p>
+    <div class="eyebrow">Book Your Appointment</div>
+    <h1>Request an appointment<br>& stay <em>reminded.</em></h1>
+    <p class="hero-body">Schedule your visit with Peak Chiropractic & Wellness below. By providing your mobile number, you'll automatically receive SMS appointment confirmations and reminders — so you never miss a visit.</p>
   </div>
 
   <!-- PROGRAM INFO -->
@@ -465,9 +477,11 @@
   <!-- FORM CARD -->
   <div class="form-card" id="formCard">
 
-    <div class="form-title">Enter Your Information</div>
+    <div class="form-title">Request an Appointment</div>
 
     <form id="optinForm" novalidate>
+
+      <div class="section-label">Patient Information</div>
 
       <div class="form-row">
         <div class="field">
@@ -495,6 +509,52 @@
           <option value="followup">Follow-Up / Maintenance</option>
         </select>
       </div>
+
+      <div class="section-label">Preferred Appointment</div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="apptDate">Preferred Date *</label>
+          <input type="date" id="apptDate" name="apptDate" required>
+        </div>
+        <div class="field">
+          <label for="apptTime">Preferred Time *</label>
+          <select id="apptTime" name="apptTime" required>
+            <option value="">Select a time</option>
+            <optgroup label="Morning">
+              <option value="8:00 AM">8:00 AM</option>
+              <option value="8:30 AM">8:30 AM</option>
+              <option value="9:00 AM">9:00 AM</option>
+              <option value="9:30 AM">9:30 AM</option>
+              <option value="10:00 AM">10:00 AM</option>
+              <option value="10:30 AM">10:30 AM</option>
+              <option value="11:00 AM">11:00 AM</option>
+              <option value="11:30 AM">11:30 AM</option>
+            </optgroup>
+            <optgroup label="Afternoon">
+              <option value="12:00 PM">12:00 PM</option>
+              <option value="12:30 PM">12:30 PM</option>
+              <option value="1:00 PM">1:00 PM</option>
+              <option value="1:30 PM">1:30 PM</option>
+              <option value="2:00 PM">2:00 PM</option>
+              <option value="2:30 PM">2:30 PM</option>
+              <option value="3:00 PM">3:00 PM</option>
+              <option value="3:30 PM">3:30 PM</option>
+              <option value="4:00 PM">4:00 PM</option>
+              <option value="4:30 PM">4:30 PM</option>
+              <option value="5:00 PM">5:00 PM</option>
+              <option value="5:30 PM">5:30 PM</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="notes">Reason for Visit / Notes</label>
+        <input type="text" id="notes" name="notes" placeholder="e.g. Lower back pain, first visit (optional)">
+      </div>
+
+      <div class="section-label">SMS Consent</div>
 
       <!-- CONSENT -->
       <div class="consent-block">
@@ -533,7 +593,7 @@
       </div>
 
       <button type="submit" class="submit-btn" id="submitBtn" disabled>
-        Confirm & Subscribe to SMS Reminders
+        Confirm Booking & Subscribe to SMS Reminders
       </button>
 
     </form>
@@ -579,9 +639,16 @@
     const firstName = document.getElementById('firstName').value.trim();
     const lastName = document.getElementById('lastName').value.trim();
     const phone = document.getElementById('phone').value.trim();
+    const apptDate = document.getElementById('apptDate').value.trim();
+    const apptTime = document.getElementById('apptTime').value.trim();
 
     if (!firstName || !lastName || !phone) {
       alert('Please fill in your first name, last name, and phone number.');
+      return;
+    }
+
+    if (!apptDate || !apptTime) {
+      alert('Please select a preferred appointment date and time.');
       return;
     }
 
