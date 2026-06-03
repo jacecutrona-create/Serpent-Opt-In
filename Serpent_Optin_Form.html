@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appointment SMS Consent — Peak Chiropractic & Wellness</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0A0A0A;
+    --surface: #141414;
+    --card: #1C1C1C;
+    --border: #2A2A2A;
+    --lime: #B8FF47;
+    --lime-dim: #8FCC2E;
+    --white: #F5F5F2;
+    --muted: #888880;
+    --error: #FF5C5C;
+    --radius: 10px;
+  }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* SAMPLE BANNER */
+  .sample-banner {
+    background: repeating-linear-gradient(
+      45deg,
+      #1a1000,
+      #1a1000 10px,
+      #221500 10px,
+      #221500 20px
+    );
+    border-bottom: 2px solid #F5A623;
+    padding: 12px 24px;
+    text-align: center;
+  }
+  .sample-banner-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sample-tag {
+    background: #F5A623;
+    color: #000;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .sample-text {
+    font-size: 13px;
+    color: #F5A623;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* HEADER */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo-wordmark {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .logo-wordmark span { color: var(--lime); }
+  .logo-sub {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+  .powered-by {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: right;
+  }
+  .powered-by strong {
+    color: var(--lime);
+    font-weight: 600;
+  }
+
+  /* MAIN */
+  .main {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 48px 24px 64px;
+  }
+
+  /* HERO */
+  .hero {
+    margin-bottom: 40px;
+  }
+  .eyebrow {
+    display: inline-block;
+    background: rgba(184,255,71,0.12);
+    color: var(--lime);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(184,255,71,0.25);
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--lime);
+  }
+  .hero-body {
+    font-size: 14px;
+    color: #BCBCB5;
+    line-height: 1.75;
+  }
+
+  /* PROGRAM INFO */
+  .program-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--lime);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin-bottom: 32px;
+  }
+  .program-card-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .program-detail {
+    display: flex;
+    gap: 8px;
+    font-size: 13px;
+    color: #BCBCB5;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .program-detail:last-child { margin-bottom: 0; }
+  .program-detail-label {
+    color: var(--lime);
+    font-weight: 600;
+    white-space: nowrap;
+    min-width: 90px;
+  }
+
+  /* FORM */
+  .form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    margin-bottom: 24px;
+  }
+  .form-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .field {
+    margin-bottom: 20px;
+  }
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .field input,
+  .field select {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s;
+    appearance: none;
+  }
+  .field input:focus,
+  .field select:focus {
+    border-color: var(--lime);
+  }
+  .field input::placeholder { color: var(--muted); }
+
+  /* CONSENT */
+  .consent-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .consent-checkbox-row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .consent-checkbox-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    margin-top: 2px;
+    accent-color: var(--lime);
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .consent-label {
+    font-size: 13px;
+    color: #BCBCB5;
+    line-height: 1.7;
+    cursor: pointer;
+  }
+  .consent-label strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+  .consent-label a {
+    color: var(--lime);
+    text-decoration: none;
+  }
+  .consent-label a:hover {
+    text-decoration: underline;
+  }
+
+  /* DISCLOSURES */
+  .disclosures {
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+  .disclosure-item {
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .disclosure-item:last-child { margin-bottom: 0; }
+  .disclosure-dot {
+    color: var(--lime);
+    font-weight: 800;
+    margin-top: 1px;
+  }
+
+  /* SUBMIT */
+  .submit-btn {
+    width: 100%;
+    background: var(--lime);
+    color: var(--black);
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .submit-btn:hover {
+    background: #ceff6e;
+    transform: translateY(-1px);
+  }
+  .submit-btn:disabled {
+    background: var(--border);
+    color: var(--muted);
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* SUCCESS STATE */
+  .success-state {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(184,255,71,0.1);
+    border: 2px solid var(--lime);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+  .success-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--lime);
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .success-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 10px;
+  }
+  .success-body {
+    font-size: 14px;
+    color: #BCBCB5;
+    line-height: 1.7;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .footer-brand span { color: var(--lime); }
+  .footer-links {
+    display: flex;
+    gap: 20px;
+  }
+  .footer-links a {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .footer-links a:hover { color: var(--lime); }
+
+  @media (max-width: 500px) {
+    .header { padding: 16px 20px; }
+    .main { padding: 32px 16px 48px; }
+    .hero h1 { font-size: 32px; }
+    .form-card { padding: 24px 18px; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    .footer { padding: 16px 20px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SAMPLE NOTICE BANNER -->
+<div class="sample-banner">
+  <div class="sample-banner-inner">
+    <span class="sample-tag">⚠ Sample Form</span>
+    <span class="sample-text">This is a demonstration opt-in form submitted for Twilio A2P 10DLC campaign registration review. It represents the consent process that will be implemented for each onboarded client.</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div>
+    <div class="logo-wordmark">Peak <span>Chiro</span></div>
+    <div class="logo-sub">Chiropractic & Wellness · Denver, CO</div>
+  </div>
+  <div class="powered-by">
+    Appointment reminders by<br>
+    <strong>Wraith AI Solutions</strong>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <div class="hero">
+    <div class="eyebrow">SMS Appointment Reminders</div>
+    <h1>Stay on top of<br>your <em>appointments.</em></h1>
+    <p class="hero-body">Sign up to receive automated SMS appointment reminders from Peak Chiropractic & Wellness. We'll confirm your booking, remind you before your visit, and make it easy to reschedule if needed — all by text.</p>
+  </div>
+
+  <!-- PROGRAM INFO -->
+  <div class="program-card">
+    <div class="program-card-title">About This SMS Program</div>
+    <div class="program-detail">
+      <span class="program-detail-label">Sender:</span>
+      <span>Peak Chiropractic & Wellness, powered by Wraith AI Solutions</span>
+    </div>
+    <div class="program-detail">
+      <span class="program-detail-label">Messages:</span>
+      <span>Appointment confirmations, reminders, scheduling updates, and post-visit follow-ups</span>
+    </div>
+    <div class="program-detail">
+      <span class="program-detail-label">Frequency:</span>
+      <span>Varies by appointment activity — typically 2–4 messages per scheduled appointment</span>
+    </div>
+    <div class="program-detail">
+      <span class="program-detail-label">Opt-Out:</span>
+      <span>Reply STOP at any time to unsubscribe. Reply HELP for assistance.</span>
+    </div>
+    <div class="program-detail">
+      <span class="program-detail-label">Rates:</span>
+      <span>Message and data rates may apply depending on your carrier and plan.</span>
+    </div>
+  </div>
+
+  <!-- FORM CARD -->
+  <div class="form-card" id="formCard">
+
+    <div class="form-title">Enter Your Information</div>
+
+    <form id="optinForm" novalidate>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="firstName">First Name *</label>
+          <input type="text" id="firstName" name="firstName" placeholder="Jane" required autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="lastName">Last Name *</label>
+          <input type="text" id="lastName" name="lastName" placeholder="Smith" required autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="phone">Mobile Phone Number *</label>
+        <input type="tel" id="phone" name="phone" placeholder="(303) 555-0100" required autocomplete="tel">
+      </div>
+
+      <div class="field">
+        <label for="service">Appointment Type</label>
+        <select id="service" name="service">
+          <option value="">Select a service (optional)</option>
+          <option value="new-patient">New Patient Consult</option>
+          <option value="adjustment">Adjustment</option>
+          <option value="massage">Deep Tissue Massage</option>
+          <option value="followup">Follow-Up / Maintenance</option>
+        </select>
+      </div>
+
+      <!-- CONSENT -->
+      <div class="consent-block">
+        <div class="consent-checkbox-row">
+          <input type="checkbox" id="consentCheck" name="consent" required>
+          <label class="consent-label" for="consentCheck">
+            By checking this box, I provide my <strong>express written consent</strong> to receive recurring automated SMS text messages from <strong>Peak Chiropractic & Wellness</strong> (powered by Wraith AI Solutions) at the mobile number provided above. These messages may include appointment confirmations, reminders, scheduling updates, rescheduling offers, and post-visit follow-ups. I understand that:
+            <br><br>
+            • Consent is not a condition of any purchase or service.<br>
+            • Message frequency varies — typically 2–4 messages per appointment.<br>
+            • Message and data rates may apply.<br>
+            • I can opt out at any time by replying <strong>STOP</strong> to any message.<br>
+            • I can reply <strong>HELP</strong> for assistance or contact the office at (720) 555-0194.<br>
+            • My information will be handled in accordance with the
+            <a href="https://no-showserpent.carrd.co" target="_blank" rel="noopener">Privacy Policy</a>
+            and
+            <a href="https://no-showserpent.carrd.co" target="_blank" rel="noopener">Terms & Conditions</a>
+            of Wraith AI Solutions.
+          </label>
+        </div>
+
+        <div class="disclosures">
+          <div class="disclosure-item">
+            <span class="disclosure-dot">→</span>
+            <span>You may receive up to 4 messages per scheduled appointment.</span>
+          </div>
+          <div class="disclosure-item">
+            <span class="disclosure-dot">→</span>
+            <span>Reply <strong style="color:var(--white)">STOP</strong> to cancel. Reply <strong style="color:var(--white)">HELP</strong> for help. Standard message and data rates may apply.</span>
+          </div>
+          <div class="disclosure-item">
+            <span class="disclosure-dot">→</span>
+            <span>Your phone number will only be used to send appointment-related communications from Peak Chiropractic & Wellness. It will never be sold or shared with third parties for marketing.</span>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn" disabled>
+        Confirm & Subscribe to SMS Reminders
+      </button>
+
+    </form>
+
+    <!-- SUCCESS STATE -->
+    <div class="success-state" id="successState">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="success-title">You're all set!</div>
+      <p class="success-body">You're subscribed to SMS appointment reminders from Peak Chiropractic & Wellness. You'll receive a confirmation text shortly. Reply STOP at any time to unsubscribe.</p>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">Wraith <span>AI</span> Solutions — No-Show Serpent</div>
+  <div class="footer-links">
+    <a href="https://no-showserpent.carrd.co" target="_blank">Privacy Policy</a>
+    <a href="https://no-showserpent.carrd.co" target="_blank">Terms & Conditions</a>
+    <a href="mailto:jace.cutrona@gmail.com">Contact</a>
+  </div>
+</footer>
+
+<script>
+  const checkbox = document.getElementById('consentCheck');
+  const submitBtn = document.getElementById('submitBtn');
+  const form = document.getElementById('optinForm');
+  const successState = document.getElementById('successState');
+
+  // Enable submit only when consent is checked
+  checkbox.addEventListener('change', () => {
+    submitBtn.disabled = !checkbox.checked;
+  });
+
+  // Handle form submission
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    if (!firstName || !lastName || !phone) {
+      alert('Please fill in your first name, last name, and phone number.');
+      return;
+    }
+
+    if (!checkbox.checked) {
+      alert('Please provide your consent by checking the box above.');
+      return;
+    }
+
+    // Show success state
+    form.style.display = 'none';
+    successState.style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
