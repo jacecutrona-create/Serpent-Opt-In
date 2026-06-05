@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Appointment SMS Consent — Peak Chiropractic & Wellness</title>
+<title>Appointment Request — Peak Chiropractic & Wellness</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -17,7 +17,6 @@
     --lime-dim: #8FCC2E;
     --white: #F5F5F2;
     --muted: #888880;
-    --error: #FF5C5C;
     --radius: 10px;
   }
 
@@ -31,15 +30,8 @@
     padding: 0;
   }
 
-  /* SAMPLE BANNER */
   .sample-banner {
-    background: repeating-linear-gradient(
-      45deg,
-      #1a1000,
-      #1a1000 10px,
-      #221500 10px,
-      #221500 20px
-    );
+    background: repeating-linear-gradient(45deg,#1a1000,#1a1000 10px,#221500 10px,#221500 20px);
     border-bottom: 2px solid #F5A623;
     padding: 12px 24px;
     text-align: center;
@@ -68,7 +60,6 @@
     line-height: 1.4;
   }
 
-  /* HEADER */
   .header {
     border-bottom: 1px solid var(--border);
     padding: 24px 40px;
@@ -97,22 +88,15 @@
     color: var(--muted);
     text-align: right;
   }
-  .powered-by strong {
-    color: var(--lime);
-    font-weight: 600;
-  }
+  .powered-by strong { color: var(--lime); font-weight: 600; }
 
-  /* MAIN */
   .main {
     max-width: 600px;
     margin: 0 auto;
     padding: 48px 24px 64px;
   }
 
-  /* HERO */
-  .hero {
-    margin-bottom: 40px;
-  }
+  .hero { margin-bottom: 40px; }
   .eyebrow {
     display: inline-block;
     background: rgba(184,255,71,0.12);
@@ -136,17 +120,9 @@
     color: var(--white);
     margin-bottom: 14px;
   }
-  .hero h1 em {
-    font-style: normal;
-    color: var(--lime);
-  }
-  .hero-body {
-    font-size: 14px;
-    color: #BCBCB5;
-    line-height: 1.75;
-  }
+  .hero h1 em { font-style: normal; color: var(--lime); }
+  .hero-body { font-size: 14px; color: #BCBCB5; line-height: 1.75; }
 
-  /* PROGRAM INFO */
   .program-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -179,7 +155,6 @@
     min-width: 90px;
   }
 
-  /* FORM */
   .form-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -196,7 +171,6 @@
     margin-bottom: 24px;
     letter-spacing: 0.02em;
   }
-
   .section-label {
     font-size: 10px;
     font-weight: 600;
@@ -207,17 +181,27 @@
     margin-top: 8px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-
+  .optional-badge {
+    background: rgba(136,136,128,0.2);
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+  }
   .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
   }
-
-  .field {
-    margin-bottom: 20px;
-  }
+  .field { margin-bottom: 20px; }
   .field label {
     display: block;
     font-size: 12px;
@@ -242,23 +226,29 @@
     appearance: none;
   }
   .field input:focus,
-  .field select:focus {
-    border-color: var(--lime);
-  }
+  .field select:focus { border-color: var(--lime); }
   .field input::placeholder { color: var(--muted); }
 
-  /* CONSENT */
-  .consent-block {
+  /* OPTIONAL SMS CONSENT SECTION */
+  .sms-opt-in-box {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
   }
+  .sms-opt-in-intro {
+    font-size: 13px;
+    color: #BCBCB5;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+  .sms-opt-in-intro strong { color: var(--white); }
   .consent-checkbox-row {
     display: flex;
     gap: 14px;
     align-items: flex-start;
+    margin-bottom: 16px;
   }
   .consent-checkbox-row input[type="checkbox"] {
     width: 20px;
@@ -267,7 +257,6 @@
     margin-top: 2px;
     accent-color: var(--lime);
     cursor: pointer;
-    border-radius: 4px;
   }
   .consent-label {
     font-size: 13px;
@@ -275,40 +264,29 @@
     line-height: 1.7;
     cursor: pointer;
   }
-  .consent-label strong {
-    color: var(--white);
-    font-weight: 600;
-  }
-  .consent-label a {
-    color: var(--lime);
-    text-decoration: none;
-  }
-  .consent-label a:hover {
-    text-decoration: underline;
+  .consent-label strong { color: var(--white); font-weight: 600; }
+  .consent-label a { color: var(--lime); text-decoration: none; }
+  .consent-label a:hover { text-decoration: underline; }
+
+  .skip-notice {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
   }
 
-  /* DISCLOSURES */
-  .disclosures {
-    border-top: 1px solid var(--border);
-    padding-top: 16px;
-    margin-top: 16px;
-  }
+  .disclosures { margin-top: 14px; }
   .disclosure-item {
     display: flex;
     gap: 8px;
     font-size: 12px;
     color: var(--muted);
-    margin-bottom: 8px;
+    margin-bottom: 7px;
     line-height: 1.5;
   }
-  .disclosure-item:last-child { margin-bottom: 0; }
-  .disclosure-dot {
-    color: var(--lime);
-    font-weight: 800;
-    margin-top: 1px;
-  }
+  .disclosure-dot { color: var(--lime); font-weight: 800; margin-top: 1px; }
 
-  /* SUBMIT */
   .submit-btn {
     width: 100%;
     background: var(--lime);
@@ -324,23 +302,9 @@
     cursor: pointer;
     transition: background 0.15s, transform 0.1s;
   }
-  .submit-btn:hover {
-    background: #ceff6e;
-    transform: translateY(-1px);
-  }
-  .submit-btn:disabled {
-    background: var(--border);
-    color: var(--muted);
-    cursor: not-allowed;
-    transform: none;
-  }
+  .submit-btn:hover { background: #ceff6e; transform: translateY(-1px); }
 
-  /* SUCCESS STATE */
-  .success-state {
-    display: none;
-    text-align: center;
-    padding: 40px 20px;
-  }
+  .success-state { display: none; text-align: center; padding: 40px 20px; }
   .success-icon {
     width: 64px;
     height: 64px;
@@ -369,15 +333,8 @@
     color: var(--lime);
     margin-bottom: 10px;
   }
-  .success-body {
-    font-size: 14px;
-    color: #BCBCB5;
-    line-height: 1.7;
-    max-width: 380px;
-    margin: 0 auto;
-  }
+  .success-body { font-size: 14px; color: #BCBCB5; line-height: 1.7; max-width: 380px; margin: 0 auto; }
 
-  /* FOOTER */
   .footer {
     border-top: 1px solid var(--border);
     padding: 20px 40px;
@@ -396,16 +353,8 @@
     color: var(--muted);
   }
   .footer-brand span { color: var(--lime); }
-  .footer-links {
-    display: flex;
-    gap: 20px;
-  }
-  .footer-links a {
-    font-size: 12px;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.15s;
-  }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
   .footer-links a:hover { color: var(--lime); }
 
   @media (max-width: 500px) {
@@ -424,7 +373,7 @@
 <div class="sample-banner">
   <div class="sample-banner-inner">
     <span class="sample-tag">⚠ Sample Form</span>
-    <span class="sample-text">This is a demonstration opt-in form submitted for Twilio A2P 10DLC campaign registration review. It represents the consent process that will be implemented for each onboarded client.</span>
+    <span class="sample-text">This is a demonstration booking form submitted for Twilio A2P 10DLC campaign registration review. SMS opt-in is entirely optional and is not required to complete the booking.</span>
   </div>
 </div>
 
@@ -440,18 +389,18 @@
   </div>
 </header>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN -->
 <main class="main">
 
   <div class="hero">
     <div class="eyebrow">Book Your Appointment</div>
-    <h1>Request an appointment<br>& stay <em>reminded.</em></h1>
-    <p class="hero-body">Schedule your visit with Peak Chiropractic & Wellness below. By providing your mobile number, you'll automatically receive SMS appointment confirmations and reminders — so you never miss a visit.</p>
+    <h1>Request an<br><em>appointment.</em></h1>
+    <p class="hero-body">Fill out the form below to request an appointment with Peak Chiropractic & Wellness. You may also choose to opt in to SMS appointment reminders — this is completely optional and will not affect your booking.</p>
   </div>
 
   <!-- PROGRAM INFO -->
   <div class="program-card">
-    <div class="program-card-title">About This SMS Program</div>
+    <div class="program-card-title">Optional SMS Reminder Program</div>
     <div class="program-detail">
       <span class="program-detail-label">Sender:</span>
       <span>Peak Chiropractic & Wellness, powered by Wraith AI Solutions</span>
@@ -462,22 +411,22 @@
     </div>
     <div class="program-detail">
       <span class="program-detail-label">Frequency:</span>
-      <span>Varies by appointment activity — typically 2–4 messages per scheduled appointment</span>
+      <span>Typically 2–4 messages per scheduled appointment</span>
     </div>
     <div class="program-detail">
       <span class="program-detail-label">Opt-Out:</span>
-      <span>Reply STOP at any time to unsubscribe. Reply HELP for assistance.</span>
+      <span>Reply STOP at any time. Reply HELP for assistance.</span>
     </div>
     <div class="program-detail">
       <span class="program-detail-label">Rates:</span>
-      <span>Message and data rates may apply depending on your carrier and plan.</span>
+      <span>Message and data rates may apply.</span>
     </div>
   </div>
 
-  <!-- FORM CARD -->
+  <!-- FORM -->
   <div class="form-card" id="formCard">
 
-    <div class="form-title">Request an Appointment</div>
+    <div class="form-title">Appointment Request</div>
 
     <form id="optinForm" novalidate>
 
@@ -554,21 +503,21 @@
         <input type="text" id="notes" name="notes" placeholder="e.g. Lower back pain, first visit (optional)">
       </div>
 
-      <div class="section-label">SMS Consent</div>
+      <!-- OPTIONAL SMS CONSENT -->
+      <div class="section-label">
+        SMS Appointment Reminders
+        <span class="optional-badge">Optional</span>
+      </div>
 
-      <!-- CONSENT -->
-      <div class="consent-block">
+      <div class="sms-opt-in-box">
+        <p class="sms-opt-in-intro">
+          Would you like to receive <strong>automated SMS appointment reminders</strong> from Peak Chiropractic & Wellness? This is completely optional — your booking will be confirmed regardless of whether you choose to opt in.
+        </p>
+
         <div class="consent-checkbox-row">
-          <input type="checkbox" id="consentCheck" name="consent" required>
+          <input type="checkbox" id="consentCheck" name="consent">
           <label class="consent-label" for="consentCheck">
-            By checking this box, I provide my <strong>express written consent</strong> to receive recurring automated SMS text messages from <strong>Peak Chiropractic & Wellness</strong> (powered by Wraith AI Solutions) at the mobile number provided above. These messages may include appointment confirmations, reminders, scheduling updates, rescheduling offers, and post-visit follow-ups. I understand that:
-            <br><br>
-            • Consent is not a condition of any purchase or service.<br>
-            • Message frequency varies — typically 2–4 messages per appointment.<br>
-            • Message and data rates may apply.<br>
-            • I can opt out at any time by replying <strong>STOP</strong> to any message.<br>
-            • I can reply <strong>HELP</strong> for assistance or contact the office at (720) 555-0194.<br>
-            • My information will be handled in accordance with the
+            Yes — I would like to receive automated SMS appointment reminders from <strong>Peak Chiropractic & Wellness</strong> (powered by Wraith AI Solutions) at the mobile number I provided above. I understand that message and data rates may apply, messages will vary in frequency (typically 2–4 per appointment), and I can opt out at any time by replying <strong>STOP</strong>. This consent is not required to book an appointment. My information will be handled per the
             <a href="https://no-showserpent.carrd.co" target="_blank" rel="noopener">Privacy Policy</a>
             and
             <a href="https://no-showserpent.carrd.co" target="_blank" rel="noopener">Terms & Conditions</a>
@@ -579,21 +528,23 @@
         <div class="disclosures">
           <div class="disclosure-item">
             <span class="disclosure-dot">→</span>
-            <span>You may receive up to 4 messages per scheduled appointment.</span>
+            <span>Opting in is <strong style="color:var(--white)">not required</strong> to complete your booking request.</span>
           </div>
           <div class="disclosure-item">
             <span class="disclosure-dot">→</span>
-            <span>Reply <strong style="color:var(--white)">STOP</strong> to cancel. Reply <strong style="color:var(--white)">HELP</strong> for help. Standard message and data rates may apply.</span>
+            <span>Reply <strong style="color:var(--white)">STOP</strong> to cancel at any time. Reply <strong style="color:var(--white)">HELP</strong> for help. Msg & data rates may apply.</span>
           </div>
           <div class="disclosure-item">
             <span class="disclosure-dot">→</span>
-            <span>Your phone number will only be used to send appointment-related communications from Peak Chiropractic & Wellness. It will never be sold or shared with third parties for marketing.</span>
+            <span>Your phone number will only be used for appointment-related communications and will never be sold or shared for marketing purposes.</span>
           </div>
         </div>
+
+        <p class="skip-notice">You may leave this unchecked to proceed without SMS reminders.</p>
       </div>
 
-      <button type="submit" class="submit-btn" id="submitBtn" disabled>
-        Confirm Booking & Subscribe to SMS Reminders
+      <button type="submit" class="submit-btn" id="submitBtn">
+        Submit Booking Request
       </button>
 
     </form>
@@ -603,8 +554,8 @@
       <div class="success-icon">
         <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <div class="success-title">You're all set!</div>
-      <p class="success-body">You're subscribed to SMS appointment reminders from Peak Chiropractic & Wellness. You'll receive a confirmation text shortly. Reply STOP at any time to unsubscribe.</p>
+      <div class="success-title">Request Received!</div>
+      <p class="success-body" id="successMsg">Your appointment request has been submitted. The team at Peak Chiropractic & Wellness will be in touch shortly to confirm your visit.</p>
     </div>
 
   </div>
@@ -622,17 +573,11 @@
 </footer>
 
 <script>
-  const checkbox = document.getElementById('consentCheck');
-  const submitBtn = document.getElementById('submitBtn');
   const form = document.getElementById('optinForm');
   const successState = document.getElementById('successState');
+  const successMsg = document.getElementById('successMsg');
+  const consentCheck = document.getElementById('consentCheck');
 
-  // Enable submit only when consent is checked
-  checkbox.addEventListener('change', () => {
-    submitBtn.disabled = !checkbox.checked;
-  });
-
-  // Handle form submission
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -652,12 +597,13 @@
       return;
     }
 
-    if (!checkbox.checked) {
-      alert('Please provide your consent by checking the box above.');
-      return;
+    // Consent is optional — form submits regardless
+    if (consentCheck.checked) {
+      successMsg.textContent = "Your appointment request has been submitted and you're opted in to SMS reminders from Peak Chiropractic & Wellness. You'll receive a confirmation text shortly. Reply STOP at any time to unsubscribe.";
+    } else {
+      successMsg.textContent = "Your appointment request has been submitted. The team at Peak Chiropractic & Wellness will be in touch shortly to confirm your visit.";
     }
 
-    // Show success state
     form.style.display = 'none';
     successState.style.display = 'block';
   });
